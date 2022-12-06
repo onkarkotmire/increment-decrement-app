@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        display: flex;
+        align-items: center;
+        margin-top: 2%;
+        flex-direction: column;
+    }
+    .main-container{
+        width: 40vw;
+    }
+    .input-container{
+        display: flex;
+        margin-top: 2%;
+    }
+    p, input, button{
+        margin: 7px;
+    }
+    ul{
+        margin-left: 60px;
+        margin-top: 15px;
+    }
+    #btn{
+        width: 100px;
+        height: 20px;
+        font-size: 15px;
+    }
+    #list{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 18px;
+    }
+    #div{
+        width: 300px;
+        height: 35px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+    h3{
+        margin-left: 140px;
+        display: none;
+    }
+
+
+    </style>
+</head>
+<body>
+      <h1>My shopping List</h1>
+      <div class="main-container">
+      <div class="input-container">
+        <p>Enter a New Item : </p>
+        <input type="text" id="input_value">
+        <button id="button">Add item</button>
+      </div>
+      <ul id="list">
+
+      </ul>
+    </div>
+    <script>
+       let input_value = document.getElementById("input_value");
+       let button = document.getElementById("button");
+       let list_container = document.getElementById("list");
+
+       button.addEventListener("click", adding_element);
+
+       function adding_element(){
+        //taking input from user
+        let inputvalue = input_value.value;
+
+        if(inputvalue === ""){
+            alert("please provide the value");
+        }else{
+         
+        //creation of list element
+        let div = document.createElement("div");
+        div.setAttribute("id","div");
+        let item = document.createElement("li");
+        item.setAttribute("id", "list-item");
+        item.innerText = inputvalue;
+        let deletebtn = document.createElement("button");
+        deletebtn.setAttribute("id","btn");
+        deletebtn.innerText = "Delete";
+        div.append(item);
+        div.append(deletebtn);
+        list_container.append(div);
+
+        deletebtn.addEventListener("click", deletefun);
+
+        function deletefun(){
+            div.remove(item)[0];
+        }
+    }
+
+
+       }
+    </script>
+</body>
+</html>
